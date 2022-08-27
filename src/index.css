@@ -1,12 +1,13 @@
 
 @font-face {
-     font-family: 'Helvetica Neue';
-     src: url('./fonts/HelveticaNeue.pfb') format("truetype");
+  font-family: 'HelveticaNeue';
+  src: local('HelveticaNeue'), url('./fonts/HelveticaNeue.ttc') format('truetype');
 }
-
-body {
+* {
      margin: 0;
      padding: 0;
-     box-sizing: border-box;
-     font-family: 'Helvetica Neue';
+     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+     box-sizing: border-box;         /* Opera/IE 8+ */
+     font-family: 'HelveticaNeue';
 }
