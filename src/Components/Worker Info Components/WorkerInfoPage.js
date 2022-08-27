@@ -23,9 +23,11 @@ const FormStyled = styled.form`
 
 export default function WorkerInfoPage() {
      const [teamsId, setTeamsId] = React.useState(localStorage.getItem("teamId"));
+     const [hasSubmitted, setHasSubmitted] = React.useState(0);
 
-     function handleSubmit() {
-          localStorage.clear();
+     function handleSubmit(event) {
+          event.preventDefault();
+          setHasSubmitted(oldValue => oldValue + 1);
      }
      return (
           <WorkerInfoPageStyled>
@@ -38,43 +40,48 @@ export default function WorkerInfoPage() {
                />
 
                {/* Inputs and DropDowns*/}
-               <FormStyled onSubmit = {handleSubmit}>
+               <FormStyled onSubmit = {(event) => handleSubmit(event)}>
                     <InputFields
                          type = "text"
                          label = "სახელი"
                          description = "მინიმუმ 2 სიმბოლო, ქართული ასოები"
                          keyName = "name"
+                         hasSubmitted = {hasSubmitted}
                     />
                     <InputFields
                          type = "text"
                          label = "გვარი"
                          description = "მინიმუმ 2 სიმბოლო, ქართული ასოები"
                          keyName = "lastname"
+                         hasSubmitted = {hasSubmitted}
                     />
                     <DropDowns
                          name = "თიმი"
                          api = 'teams'
                          setTeamsId = {setTeamsId}
                          keyName = "team"
+                         hasSubmitted = {hasSubmitted}
                     />
                     <DropDowns
                          name = "პოზიცია"
                          api = 'positions'
                          teamsId = {teamsId}
                          keyName = "position"
+                         hasSubmitted = {hasSubmitted}
                     />
                     <InputFields
                          type = "mail"
                          label = "მეილი"
                          description = "უნდა მთავრდებოდეს @redberry.ge-ით"
                          keyName = "mail"
+                         hasSubmitted = {hasSubmitted}
                     />
                     <InputFields
                          type = "tel"
                          label = "ტელეფონის ნომერი"
                          description = "ქართული მობ-ნომრის ფორმატი"
-                         pattern="{5}-[0-9][0-9]-[0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
                          keyName = "phone"
+                         hasSubmitted = {hasSubmitted}
                     />
                     <NextButton type = "submit" text = "შემდეგი" />
 

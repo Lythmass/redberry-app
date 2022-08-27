@@ -8,12 +8,13 @@ const DropDownsStyled = styled.div`
           font-size: 18px;
           line-height: 21px;
           padding: 0 0 0 1rem;
-          border: none;
+          border: ${props => (!localStorage.getItem(props.keyName) && props.hasSubmitted) ? '1.9px solid #E52F2F' : 'none'};
+          border-radius: 8px;
           outline: none;
           font-weight: bold;
           position: relative;
           &:focus {
-               border: none;
+               border: ${props => (!localStorage.getItem(props.keyName) && props.hasSubmitted) ? '1.9px solid #E52F2F' : 'none'};
                outline: none;
           }
 
@@ -47,7 +48,7 @@ export default function DropDowns(props) {
      }, []);
 
      const listOptions = options.map(option => {
-          if(props.name == 'თიმი') {
+          if(props.keyName == 'team') {
                return (
                     <OptionStyled
                          key = {option.id}
@@ -58,21 +59,6 @@ export default function DropDowns(props) {
                     </OptionStyled>
                )
           } else {
-
-               //If the user has not chosen the team yet,
-               //then display all positions.
-               if(!props.teamsId) {
-                    return (
-                         <OptionStyled
-                              key = {option.id}
-                              id = {option.id}
-                              value = {option.name}
-                         >
-                              {option.name}
-                         </OptionStyled>
-                    )
-               }
-
                //If the user has chosen the team,
                //then display positions based on the team.
                if(option.team_id == props.teamsId) {
@@ -91,7 +77,7 @@ export default function DropDowns(props) {
 
      function handleChange(event) {
           localStorage.setItem(props.keyName, event.target.value);
-          if(props.name == 'თიმი') {
+          if(props.keyName == 'team') {
                //Get the id of selected value
                const index = event.target.selectedIndex;
                localStorage.setItem("teamId", index);
@@ -100,9 +86,8 @@ export default function DropDowns(props) {
                setPosition(localStorage.getItem(props.keyName));
           }
      }
-
      return (
-          <DropDownsStyled>
+          <DropDownsStyled hasSubmitted = {props.hasSubmitted} keyName = {props.keyName}>
                <select
                     onChange = {(event) => handleChange(event)}
                     value = {localStorage.getItem(props.keyName)}

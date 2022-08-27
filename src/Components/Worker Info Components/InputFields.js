@@ -8,6 +8,7 @@ const InputFieldsStyled = styled.div`
      > label {
           font-size: 18px;
           font-weight: bold;
+          color: ${(props) => props.error ? `#E52F2F` : `black`};
      }
      > input {
           width: 358px;
@@ -17,33 +18,101 @@ const InputFieldsStyled = styled.div`
           padding: 0 1rem;
           color: hsl(0, 100%, 0%, 0.6);
           border-radius: 8px;
-          border: 1.9px solid #8AC0E2;
+          border: 1.9px solid ${(props) => props.error ? `#E52F2F` : `#8AC0E2`};
           outline: none;
           &:focus {
-               border: 1.9px solid #317AD0;
+               border: 1.9px solid ${(props) => props.error ? `#E52F2F` : `#8AC0E2`};
           }
      }
 
      > p {
           font-size: 14px;
-          color: #2E2E2E;
+          color: ${(props) => props.error ? `#E52F2F` : `#2E2E2E`};
           margin: 0;
      }
 `
 
 export default function Inputfields(props) {
+     const [error, setError] = React.useState(false);
+
+     const [checkLength, setCheckLength] = React.useState(true);
+     const [checkLanguage, setCheckLanguage] = React.useState(true);
+     const [checkMail, setCheckMail] = React.useState(true);
+     const [checkPhone, setCheckPhone] = React.useState(true);
+
+     const [change, setChange] = React.useState(localStorage.getItem(props.keyName) || "");
+
+     React.useEffect(() => {
+          if(!checkMail || !checkLanguage || !checkLength || !checkPhone) {
+               setError(true);
+          } else {
+               setError(false);
+          }
+     });
+
+     function validateLength() {
+          if(change == null || change.length <= 1) {
+               setCheckLength(false);
+          } else {
+               setCheckLength(true);
+          }
+     }
+
+     function validateLanguage() {
+          if(props.keyName == 'name' || props.keyName == 'lastname') {
+               for(let i = 0; i <= change.length; i++) {
+                    if(change[i] < 'ა' || change[i] > 'ჰ') {
+                         setCheckLanguage(false);
+                         break;
+                    }
+                    setCheckLanguage(true);
+               }
+          }
+     }
+
+     function validateMail() {
+          if(props.type == 'mail') {
+               //Check if the mail ends with @redberry.ge
+               if(change.substr(change.length - 12) != "@redberry.ge") {
+                    setCheckMail(false);
+               } else {
+                    setCheckMail(true);
+               }
+          }
+     }
+
+     function validatePhonePattern() {
+          //Georgian phone number format in regexp
+          const regex = new RegExp("^[\+]?[9-9]{2}[5][ ]?[0-9]{3}[ ]?[0-9]{2}[ ]?[0-9]{2}[ ]?[0-9]{2}$");
+
+          if(props.type == "tel") {
+               if(!change.match(regex)) {
+                    setCheckPhone(false);
+               } else {
+                    setCheckPhone(true);
+               }
+          }
+     }
 
      function handleChange(event) {
           localStorage.setItem(props.keyName, event.target.value);
+          setChange(event.target.value);
      }
+     React.useEffect(() => {
+          if(props.hasSubmitted) {
+               validateLength();
+               validateLanguage();
+               validateMail();
+               validatePhonePattern();
+          }
+     }, [props.hasSubmitted]);
 
      return (
-          <InputFieldsStyled>
+          <InputFieldsStyled error = {error}>
                <label>{props.label}</label>
                <input
                     onChange = {(event) => handleChange(event)}
                     type = {props.type}
-                    pattern = {props.pattern}
                     value = {localStorage.getItem(props.keyName)}
                />
                <p>{props.description}</p>
