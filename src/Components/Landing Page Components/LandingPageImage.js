@@ -14,6 +14,7 @@ export default function LandingPageImage() {
      const [image, setImage] = React.useState(window.innerWidth >= 1000 ? "Group2.png" : "Group.png");
 
      React.useEffect(() => {
+          //Change the picture while the screen gets resized
           function handleResize() {
                setImage(() => {
                     return window.innerWidth >= 1000 ? "Group2.png" : "Group.png";

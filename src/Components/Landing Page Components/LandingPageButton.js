@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { Link } from "react-router-dom";
+
 const LandingPageButtonStyled = styled.div`
      display: flex;
      justify-content: center;
@@ -24,7 +26,7 @@ const LandingPageButtonStyled = styled.div`
           position: absolute;
           top: 0;
           left: -100%;
-          background-color: #2b7ee0;
+          background-color: #317AD0;
           transition: 0.25s ease;
           z-index: -1;
      }
@@ -37,7 +39,12 @@ const LandingPageButtonStyled = styled.div`
 export default function LandingPageButton(props) {
      return (
           <LandingPageButtonStyled>
-               <h3>{props.text}</h3>
+               <Link
+                    to = {props.toPage}
+                    style={{ textDecoration: 'none', color: '#fff', fontSize: '20px'}}
+               >
+                    {props.text}
+               </Link>
           </LandingPageButtonStyled>
      )
 }

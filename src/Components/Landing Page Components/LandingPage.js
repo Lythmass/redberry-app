@@ -27,9 +27,17 @@ export default function LandingPage(props) {
           <LandingPageStyled>
                <Logo />
                <LandingPageImage />
+               
+               {/* Two buttons below */}
                <div>
-                    <LandingPageButton text = "ჩანაწერის დამატება"/>
-                    <LandingPageButton text = "ჩანაწერების სია"/>
+                    <LandingPageButton
+                         text = "ჩანაწერის დამატება"
+                         toPage = "/workerinfo"
+                    />
+                    <LandingPageButton
+                         text = "ჩანაწერების სია"
+                         toPage = "/list"
+                    />
                </div>
 
           </LandingPageStyled>
