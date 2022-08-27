@@ -36,6 +36,7 @@ const OptionStyled = styled.option`
 
 export default function DropDowns(props) {
      const [options, setOptions] = React.useState([]);
+     const [position, setPosition] = React.useState();
 
      // Get The List of Options
      React.useEffect(() => {
@@ -60,7 +61,7 @@ export default function DropDowns(props) {
 
                //If the user has not chosen the team yet,
                //then display all positions.
-               if(props.teamsId == 0) {
+               if(!props.teamsId) {
                     return (
                          <OptionStyled
                               key = {option.id}
@@ -72,7 +73,7 @@ export default function DropDowns(props) {
                     )
                }
 
-               //If the use has chosen the team,
+               //If the user has chosen the team,
                //then display positions based on the team.
                if(option.team_id == props.teamsId) {
                     return (
@@ -89,16 +90,22 @@ export default function DropDowns(props) {
      });
 
      function handleChange(event) {
+          localStorage.setItem(props.keyName, event.target.value);
           if(props.name == 'თიმი') {
                //Get the id of selected value
                const index = event.target.selectedIndex;
+               localStorage.setItem("teamId", index);
                props.setTeamsId(index);
+          } else {
+               setPosition(localStorage.getItem(props.keyName));
           }
      }
+
      return (
           <DropDownsStyled>
                <select
                     onChange = {(event) => handleChange(event)}
+                    value = {localStorage.getItem(props.keyName)}
                >
                     <OptionStyled
                          style={{color: 'black'}}

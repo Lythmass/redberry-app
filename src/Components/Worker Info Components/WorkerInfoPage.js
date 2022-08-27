@@ -22,7 +22,11 @@ const FormStyled = styled.form`
 `
 
 export default function WorkerInfoPage() {
-     const [teamsId, setTeamsId] = React.useState(0);
+     const [teamsId, setTeamsId] = React.useState(localStorage.getItem("teamId"));
+
+     function handleSubmit() {
+          localStorage.clear();
+     }
      return (
           <WorkerInfoPageStyled>
 
@@ -34,40 +38,47 @@ export default function WorkerInfoPage() {
                />
 
                {/* Inputs and DropDowns*/}
-               <FormStyled>
+               <FormStyled onSubmit = {handleSubmit}>
                     <InputFields
                          type = "text"
                          label = "სახელი"
                          description = "მინიმუმ 2 სიმბოლო, ქართული ასოები"
+                         keyName = "name"
                     />
                     <InputFields
                          type = "text"
                          label = "გვარი"
                          description = "მინიმუმ 2 სიმბოლო, ქართული ასოები"
+                         keyName = "lastname"
                     />
                     <DropDowns
                          name = "თიმი"
                          api = 'teams'
                          setTeamsId = {setTeamsId}
+                         keyName = "team"
                     />
                     <DropDowns
                          name = "პოზიცია"
                          api = 'positions'
                          teamsId = {teamsId}
+                         keyName = "position"
                     />
                     <InputFields
                          type = "mail"
                          label = "მეილი"
                          description = "უნდა მთავრდებოდეს @redberry.ge-ით"
+                         keyName = "mail"
                     />
                     <InputFields
                          type = "tel"
                          label = "ტელეფონის ნომერი"
                          description = "ქართული მობ-ნომრის ფორმატი"
                          pattern="{5}-[0-9][0-9]-[0-9][0-9]-[0-9][0-9]-[0-9][0-9]"
+                         keyName = "phone"
                     />
+                    <NextButton type = "submit" text = "შემდეგი" />
+
                </FormStyled>
-               <NextButton text = "შემდეგი" />
           </WorkerInfoPageStyled>
      )
 }

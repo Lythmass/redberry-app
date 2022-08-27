@@ -41,7 +41,7 @@ export default function LandingPageButton(props) {
           <LandingPageButtonStyled>
                <Link
                     to = {props.toPage}
-                    style={{ textDecoration: 'none', color: '#fff', fontSize: '20px'}}
+                    style={{padding: '4.5rem', textDecoration: 'none', color: '#fff', fontSize: '20px'}}
                >
                     {props.text}
                </Link>

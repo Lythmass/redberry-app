@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { Link } from "react-router-dom";
 
-const NextButtonStyled = styled.div`
+const NextButtonStyled = styled.button`
      display: flex;
      justify-content: center;
      align-items: center;
@@ -12,7 +12,7 @@ const NextButtonStyled = styled.div`
      background-color: #62A1EB;
      color: #fff;
 
-     margin: 2rem 1rem;
+     margin: 2rem 0;
      height: 3rem;
      width: 132px;
      border-radius: 8px;
@@ -21,6 +21,10 @@ const NextButtonStyled = styled.div`
      position: relative;
      overflow: hidden;
      z-index: 1;
+
+     outline: none;
+     border: none;
+
      &:before {
           content: "";
           width: 100%;
@@ -40,13 +44,12 @@ const NextButtonStyled = styled.div`
 
 export default function NextButton(props) {
      return (
-          <NextButtonStyled>
-               <Link
-                    to = "/"
-                    style={{ textDecoration: 'none', color: '#fff', fontSize: '20px'}}
+          <NextButtonStyled type = "submit">
+               <p
+                    style={{ padding: '3rem',textDecoration: 'none', color: '#fff', fontSize: '18px'}}
                >
                     {props.text}
-               </Link>
+               </p>
           </NextButtonStyled>
      )
 }

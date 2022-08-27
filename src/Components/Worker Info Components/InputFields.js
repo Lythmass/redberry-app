@@ -32,10 +32,20 @@ const InputFieldsStyled = styled.div`
 `
 
 export default function Inputfields(props) {
+
+     function handleChange(event) {
+          localStorage.setItem(props.keyName, event.target.value);
+     }
+
      return (
           <InputFieldsStyled>
                <label>{props.label}</label>
-               <input type = {props.type} pattern = {props.pattern}/>
+               <input
+                    onChange = {(event) => handleChange(event)}
+                    type = {props.type}
+                    pattern = {props.pattern}
+                    value = {localStorage.getItem(props.keyName)}
+               />
                <p>{props.description}</p>
           </InputFieldsStyled>
      )
