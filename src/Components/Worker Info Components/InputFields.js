@@ -43,13 +43,24 @@ export default function Inputfields(props) {
      const [change, setChange] = React.useState(localStorage.getItem(props.keyName) || "");
 
      React.useEffect(() => {
-          if(!checkMail || !checkLanguage || !checkLength || !checkPhone) {
-               setError(true);
-          } else {
-               setError(false);
+          if(props.hasSubmitted) {
+               if(!checkMail || !checkLanguage || !checkLength || !checkPhone) {
+                    setError(true);
+               } else {
+                    setError(false);
+               }
           }
      });
 
+     React.useEffect(() => {
+          if(error) {
+               props.setInputsError(oldValue => oldValue == 4 ? oldValue : oldValue + 1);
+          } else {
+               props.setInputsError(oldValue => oldValue == -4 ? oldValue : oldValue - 1);
+          }
+     }, [error]);
+
+     //Validate length and emptiness
      function validateLength() {
           if(change == null || change.length <= 1) {
                setCheckLength(false);
@@ -58,6 +69,7 @@ export default function Inputfields(props) {
           }
      }
 
+     //Validate georgian language
      function validateLanguage() {
           if(props.keyName == 'name' || props.keyName == 'lastname') {
                for(let i = 0; i <= change.length; i++) {
@@ -70,6 +82,7 @@ export default function Inputfields(props) {
           }
      }
 
+     //Validate @redberry.ge
      function validateMail() {
           if(props.type == 'mail') {
                //Check if the mail ends with @redberry.ge
@@ -81,6 +94,7 @@ export default function Inputfields(props) {
           }
      }
 
+     //Validate georgian number
      function validatePhonePattern() {
           //Georgian phone number format in regexp
           const regex = new RegExp("^[\+]?[9-9]{2}[5][ ]?[0-9]{3}[ ]?[0-9]{2}[ ]?[0-9]{2}[ ]?[0-9]{2}$");
@@ -99,12 +113,10 @@ export default function Inputfields(props) {
           setChange(event.target.value);
      }
      React.useEffect(() => {
-          if(props.hasSubmitted) {
-               validateLength();
-               validateLanguage();
-               validateMail();
-               validatePhonePattern();
-          }
+          validateLength();
+          validateLanguage();
+          validateMail();
+          validatePhonePattern();
      }, [props.hasSubmitted]);
 
      return (

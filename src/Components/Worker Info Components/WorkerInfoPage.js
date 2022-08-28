@@ -24,11 +24,25 @@ const FormStyled = styled.form`
 export default function WorkerInfoPage() {
      const [teamsId, setTeamsId] = React.useState(localStorage.getItem("teamId"));
      const [hasSubmitted, setHasSubmitted] = React.useState(0);
+     const [inputsError, setInputsError] = React.useState(0);
+     const [dropDownsError, setDropDownsError] = React.useState(0);
+     const [refresh, setRefresh] = React.useState(false);
 
      function handleSubmit(event) {
           event.preventDefault();
           setHasSubmitted(oldValue => oldValue + 1);
+          setTimeout(() => {
+               setRefresh(oldValue => !oldValue);
+          }, 100);
+
      }
+     React.useEffect(() => {
+          if(hasSubmitted > 0) {
+               if(inputsError == -4 && dropDownsError == -2) {
+                    alert('yees');
+               }
+          }
+     }, [refresh]);
      return (
           <WorkerInfoPageStyled>
 
@@ -47,6 +61,7 @@ export default function WorkerInfoPage() {
                          description = "მინიმუმ 2 სიმბოლო, ქართული ასოები"
                          keyName = "name"
                          hasSubmitted = {hasSubmitted}
+                         setInputsError = {setInputsError}
                     />
                     <InputFields
                          type = "text"
@@ -54,6 +69,7 @@ export default function WorkerInfoPage() {
                          description = "მინიმუმ 2 სიმბოლო, ქართული ასოები"
                          keyName = "lastname"
                          hasSubmitted = {hasSubmitted}
+                         setInputsError = {setInputsError}
                     />
                     <DropDowns
                          name = "თიმი"
@@ -61,6 +77,8 @@ export default function WorkerInfoPage() {
                          setTeamsId = {setTeamsId}
                          keyName = "team"
                          hasSubmitted = {hasSubmitted}
+                         setDropDownsError = {setDropDownsError}
+
                     />
                     <DropDowns
                          name = "პოზიცია"
@@ -68,6 +86,7 @@ export default function WorkerInfoPage() {
                          teamsId = {teamsId}
                          keyName = "position"
                          hasSubmitted = {hasSubmitted}
+                         setDropDownsError = {setDropDownsError}
                     />
                     <InputFields
                          type = "mail"
@@ -75,6 +94,7 @@ export default function WorkerInfoPage() {
                          description = "უნდა მთავრდებოდეს @redberry.ge-ით"
                          keyName = "mail"
                          hasSubmitted = {hasSubmitted}
+                         setInputsError = {setInputsError}
                     />
                     <InputFields
                          type = "tel"
@@ -82,6 +102,7 @@ export default function WorkerInfoPage() {
                          description = "ქართული მობ-ნომრის ფორმატი"
                          keyName = "phone"
                          hasSubmitted = {hasSubmitted}
+                         setInputsError = {setInputsError}
                     />
                     <NextButton type = "submit" text = "შემდეგი" />
 

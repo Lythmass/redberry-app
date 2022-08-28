@@ -47,6 +47,13 @@ export default function DropDowns(props) {
 
      }, []);
 
+     React.useEffect(() => {
+          if(!localStorage.getItem(props.keyName) && props.hasSubmitted) {
+               props.setDropDownsError(oldValue => oldValue == 2 ? oldValue : oldValue + 1);
+          } else {
+               props.setDropDownsError(oldValue => oldValue == -2 ? oldValue : oldValue - 1);
+          }
+     });
      const listOptions = options.map(option => {
           if(props.keyName == 'team') {
                return (

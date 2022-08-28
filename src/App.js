@@ -10,6 +10,7 @@ import {
 
 import LandingPage from './Components/Landing Page Components/LandingPage.js'
 import WorkerInfoPage from './Components/Worker Info Components/WorkerInfoPage.js'
+import LaptopsPage from './Components/Laptops Page Components/LaptopsPage.js'
 
 export default function App() {
      return (
@@ -17,6 +18,7 @@ export default function App() {
                <Routes>
                     <Route path = "/" element = {<LandingPage />} />
                     <Route path = "/workerinfo" element = {<WorkerInfoPage />} />
+                    <Route path = "/laptopspage" element = {<LaptopsPage />} />
                </Routes>
 
           </BrowserRouter>
