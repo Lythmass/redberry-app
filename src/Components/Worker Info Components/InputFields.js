@@ -30,6 +30,11 @@ const InputFieldsStyled = styled.div`
           color: ${(props) => props.error ? `#E52F2F` : `#2E2E2E`};
           margin: 0;
      }
+     @media(min-width: 1200px) {
+          > input {
+               width: ${props => props.width}
+          }
+     }
 `
 
 export default function Inputfields(props) {
@@ -120,7 +125,7 @@ export default function Inputfields(props) {
      }, [props.hasSubmitted]);
 
      return (
-          <InputFieldsStyled error = {error}>
+          <InputFieldsStyled width = {props.width} error = {error}>
                <label>{props.label}</label>
                <input
                     onChange = {(event) => handleChange(event)}

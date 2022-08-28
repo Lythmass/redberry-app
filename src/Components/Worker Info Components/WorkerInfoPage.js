@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import {useNavigate} from "react-router-dom"
+
 import GeneralHeader from '../GeneralHeader.js'
 import InputFields from './InputFields.js'
 import DropDowns from './DropDowns.js'
@@ -12,6 +14,10 @@ const WorkerInfoPageStyled = styled.section`
      width: 100%;
      align-items: center;
      justify-content: center;
+     > img {
+          padding: 3rem 0;
+          width: 80px;
+     }
 `
 
 const FormStyled = styled.form`
@@ -19,6 +25,16 @@ const FormStyled = styled.form`
      flex-direction: column;
      gap: 1rem;
      margin: 50px 0 0;
+
+`
+
+const FirstLastNameStyled = styled.div`
+     display: flex;
+     flex-direction: column;
+     gap: 1rem;
+     @media(min-width: 1200px) {
+          flex-direction: row;
+     }
 `
 
 export default function WorkerInfoPage() {
@@ -27,6 +43,7 @@ export default function WorkerInfoPage() {
      const [inputsError, setInputsError] = React.useState(0);
      const [dropDownsError, setDropDownsError] = React.useState(0);
      const [refresh, setRefresh] = React.useState(false);
+     const goToLaptopsPage = useNavigate();
 
      function handleSubmit(event) {
           event.preventDefault();
@@ -39,7 +56,7 @@ export default function WorkerInfoPage() {
      React.useEffect(() => {
           if(hasSubmitted > 0) {
                if(inputsError == -4 && dropDownsError == -2) {
-                    alert('yees');
+                    goToLaptopsPage("/laptopspage");
                }
           }
      }, [refresh]);
@@ -49,28 +66,34 @@ export default function WorkerInfoPage() {
                { /* Heading */}
                <GeneralHeader
                     text = "თანამშრომლის ინფო"
+                    notActivePage = "ლეპტოპის მახასიათებლები"
                     numOfPage = "1/2"
                     goBack = "/"
                />
 
                {/* Inputs and DropDowns*/}
                <FormStyled onSubmit = {(event) => handleSubmit(event)}>
-                    <InputFields
-                         type = "text"
-                         label = "სახელი"
-                         description = "მინიმუმ 2 სიმბოლო, ქართული ასოები"
-                         keyName = "name"
-                         hasSubmitted = {hasSubmitted}
-                         setInputsError = {setInputsError}
-                    />
-                    <InputFields
-                         type = "text"
-                         label = "გვარი"
-                         description = "მინიმუმ 2 სიმბოლო, ქართული ასოები"
-                         keyName = "lastname"
-                         hasSubmitted = {hasSubmitted}
-                         setInputsError = {setInputsError}
-                    />
+                    <FirstLastNameStyled>
+                         <InputFields
+                              type = "text"
+                              label = "სახელი"
+                              description = "მინიმუმ 2 სიმბოლო, ქართული ასოები"
+                              keyName = "name"
+                              hasSubmitted = {hasSubmitted}
+                              setInputsError = {setInputsError}
+                              width = "463px"
+                         />
+                         <InputFields
+                              type = "text"
+                              label = "გვარი"
+                              description = "მინიმუმ 2 სიმბოლო, ქართული ასოები"
+                              keyName = "lastname"
+                              hasSubmitted = {hasSubmitted}
+                              setInputsError = {setInputsError}
+                              width = "463px"
+                         />
+                    </FirstLastNameStyled>
+
                     <DropDowns
                          name = "თიმი"
                          api = 'teams'
@@ -78,7 +101,7 @@ export default function WorkerInfoPage() {
                          keyName = "team"
                          hasSubmitted = {hasSubmitted}
                          setDropDownsError = {setDropDownsError}
-
+                         width = "926px"
                     />
                     <DropDowns
                          name = "პოზიცია"
@@ -87,6 +110,7 @@ export default function WorkerInfoPage() {
                          keyName = "position"
                          hasSubmitted = {hasSubmitted}
                          setDropDownsError = {setDropDownsError}
+                         width = "926px"
                     />
                     <InputFields
                          type = "mail"
@@ -95,6 +119,7 @@ export default function WorkerInfoPage() {
                          keyName = "mail"
                          hasSubmitted = {hasSubmitted}
                          setInputsError = {setInputsError}
+                         width = "926px"
                     />
                     <InputFields
                          type = "tel"
@@ -103,10 +128,12 @@ export default function WorkerInfoPage() {
                          keyName = "phone"
                          hasSubmitted = {hasSubmitted}
                          setInputsError = {setInputsError}
+                         width = "926px"
                     />
                     <NextButton type = "submit" text = "შემდეგი" />
 
                </FormStyled>
+               <img src = "./images/logo2.png" />
           </WorkerInfoPageStyled>
      )
 }

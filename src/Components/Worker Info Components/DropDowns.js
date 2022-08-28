@@ -27,6 +27,11 @@ const DropDownsStyled = styled.div`
           -moz-appearance: none;
           -webkit-appearance: none;
           appearance: none;
+          @media(min-width: 1200px) {
+               width: ${props => props.width};
+               background-position: 900px center;
+               height: 80px;
+          }
      }
 `
 
@@ -94,7 +99,11 @@ export default function DropDowns(props) {
           }
      }
      return (
-          <DropDownsStyled hasSubmitted = {props.hasSubmitted} keyName = {props.keyName}>
+          <DropDownsStyled
+               width = {props.width}
+               hasSubmitted = {props.hasSubmitted}
+               keyName = {props.keyName}
+          >
                <select
                     onChange = {(event) => handleChange(event)}
                     value = {localStorage.getItem(props.keyName)}

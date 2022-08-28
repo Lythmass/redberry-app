@@ -13,12 +13,30 @@ const GeneralHeaderStyled = styled.div`
           flex-direction: column;
           align-items: center;
           gap: 0.31rem;
-
+          @media(min-width: 1200px) {
+               flex-direction: row;
+               justify-content: center;
+               gap: 4rem;
+               padding: 2.5rem 0;
+          }
           > h1 {
                font-weight: 700;
                font-size: 16px;
                line-height: 20px;
+               position: relative;
+               cursor: default;
                margin: 0;
+               @media (min-width: 1200px) {
+                    font-size: 20px;
+                    > span {
+                         position: absolute;
+                         top: 1.25rem;
+                         left: 0.9rem;
+                         > img {
+                              width: 90%;
+                         }
+                    }
+               }
           }
 
           > p {
@@ -26,6 +44,9 @@ const GeneralHeaderStyled = styled.div`
                color: #898989;
                margin: 0;
           }
+
+
+
      }
 `
 
@@ -36,19 +57,49 @@ const BackButtonStyled = styled.img`
      position: absolute;
      left: 1.25rem;
      top: 0.25rem;
+     @media(min-width: 1200px) {
+          width: 2.5rem;
+          height: 2.5rem;
+          left: 3rem;
+     }
 `
 
 export default function GeneralTitle(props) {
+     const [resize, setResize] = React.useState(window.innerWidth);
+
+     React.useEffect(() => {
+          function handleResize() {
+               setResize(window.innerWidth);
+          }
+          window.addEventListener('resize', handleResize)
+     }, []);
      return (
           <GeneralHeaderStyled>
                {/* Button to go back */}
                <Link to = {props.goBack}>
-                    <BackButtonStyled src = './images/BackButton.png' />
+                    {
+                         resize < 1200 ?
+                         <BackButtonStyled src = './images/BackButton.png' /> :
+                         <BackButtonStyled src = './images/BackButton2.png' />
+                    }
+
+
                </Link>
-               <div>
-                    <h1>{props.text}</h1>
-                    <p>{props.numOfPage}</p>
-               </div>
+               {window.innerWidth < 1200 ?
+                    <div>
+                         <h1>{props.text}</h1>
+                         <p>{props.numOfPage}</p>
+                    </div>
+                    :
+                    <div>
+                         <h1>{props.text}
+                              <span>{props.numOfPage == "1/2" && <img src = "./images/Line.png"/>}</span>
+                         </h1>
+                         <h1>{props.notActivePage}
+                              <span>{props.numOfPage == "2/2" && <img src = "./images/Line.png"/>}</span>
+                         </h1>
+                    </div>
+               }
           </GeneralHeaderStyled>
      )
 }
