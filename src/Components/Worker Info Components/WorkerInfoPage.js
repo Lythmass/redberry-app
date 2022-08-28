@@ -45,6 +45,15 @@ export default function WorkerInfoPage() {
      const [refresh, setRefresh] = React.useState(false);
      const goToLaptopsPage = useNavigate();
 
+     const [resize, setResize] = React.useState(window.innerWidth);
+
+     React.useEffect(() => {
+          function handleResize() {
+               setResize(window.innerWidth);
+          }
+          window.addEventListener('resize', handleResize)
+     }, []);
+
      function handleSubmit(event) {
           event.preventDefault();
           setHasSubmitted(oldValue => oldValue + 1);
@@ -66,7 +75,7 @@ export default function WorkerInfoPage() {
                { /* Heading */}
                <GeneralHeader
                     text = "თანამშრომლის ინფო"
-                    notActivePage = "ლეპტოპის მახასიათებლები"
+                    text2 = "ლეპტოპის მახასიათებლები"
                     numOfPage = "1/2"
                     goBack = "/"
                />
@@ -133,7 +142,7 @@ export default function WorkerInfoPage() {
                     <NextButton type = "submit" text = "შემდეგი" />
 
                </FormStyled>
-               <img src = "./images/logo2.png" />
+               {window.innerWidth >= 1200 && <img src = "./images/logo2.png" />}
           </WorkerInfoPageStyled>
      )
 }

@@ -87,7 +87,7 @@ export default function GeneralTitle(props) {
                </Link>
                {window.innerWidth < 1200 ?
                     <div>
-                         <h1>{props.text}</h1>
+                         <h1>{props.numOfPage == '2/2' ? props.text2 : props.text}</h1>
                          <p>{props.numOfPage}</p>
                     </div>
                     :
@@ -95,7 +95,7 @@ export default function GeneralTitle(props) {
                          <h1>{props.text}
                               <span>{props.numOfPage == "1/2" && <img src = "./images/Line.png"/>}</span>
                          </h1>
-                         <h1>{props.notActivePage}
+                         <h1>{props.text2}
                               <span>{props.numOfPage == "2/2" && <img src = "./images/Line.png"/>}</span>
                          </h1>
                     </div>
