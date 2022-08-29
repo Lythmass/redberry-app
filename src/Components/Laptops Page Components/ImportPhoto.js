@@ -5,6 +5,8 @@ const ImportPhotoStyled = styled.div`
      width: 358px;
      height: 244px;
 
+     margin: 0 0 2rem 0;
+
      border: 2px dashed #4386A9;
      border-radius: 8px;
 
@@ -13,6 +15,7 @@ const ImportPhotoStyled = styled.div`
      align-items: center;
      flex-direction: column;
 
+     position: relative;
      > label {
           cursor: pointer;
 
@@ -26,7 +29,10 @@ const ImportPhotoStyled = styled.div`
 
           color: #4386A9;
           > img {
-               width: 54px;
+               width: ${props => props.change != "./images/camera.png" ? `358px` : "54px"};
+               height: ${props => props.change != "./images/camera.png" && `244px`};
+               position: ${props => props.change != "./images/camera.png" && 'absolute'};
+               object-fit: cover;
           }
      }
 
@@ -36,13 +42,33 @@ const ImportPhotoStyled = styled.div`
 
 `
 export default function ImportPhoto(props) {
+     const [change, setChange] = React.useState("./images/camera.png");
+     React.useEffect(() => {
+          if(localStorage.getItem("photo")) {
+               setChange(JSON.parse(localStorage.getItem("photo")));
+          }
+     }, []);
+     function handleChange(event) {
+          const file = event.target.files[0];
+          const reader = new FileReader();
+          reader.onload = function(event) {
+               setChange(event.target.result);
+               localStorage.setItem("photo", JSON.stringify(event.target.result));
+          }
+          reader.readAsDataURL(file);
+     }
+
      return (
-          <ImportPhotoStyled>
+          <ImportPhotoStyled change = {change}>
                <label htmlFor = "photo">
-                    <img src = "./images/camera.png" />
+                    <img src = {change} />
                     ლეპტოპის ფოტოს <br /> ატვირთვა
                </label>
-               <input id = "photo" type = "file" />
+               <input
+                    onChange = {(event) => handleChange(event)}
+                    id = "photo" type = "file"
+                    accept="image/*"
+               />
           </ImportPhotoStyled>
      )
 }

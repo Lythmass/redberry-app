@@ -14,7 +14,7 @@ const NextButtonStyled = styled.button`
 
      margin: 2rem 0;
      height: 3rem;
-     width: 132px;
+     width: ${props => props.width ? props.width : "132px"};
      border-radius: 8px;
 
      cursor: pointer;
@@ -44,7 +44,7 @@ const NextButtonStyled = styled.button`
 
 export default function NextButton(props) {
      return (
-          <NextButtonStyled type = "submit">
+          <NextButtonStyled width = {props.width} type = "submit">
                <p
                     style={{ padding: '3rem',textDecoration: 'none', color: '#fff', fontSize: '18px'}}
                >

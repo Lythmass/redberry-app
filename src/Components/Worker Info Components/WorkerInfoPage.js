@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import {useNavigate} from "react-router-dom"
 
 import GeneralHeader from '../GeneralHeader.js'
-import InputFields from './InputFields.js'
+import InputFields from '../InputFields.js'
 import DropDowns from './DropDowns.js'
-import NextButton from './NextButton.js'
+import NextButton from '../NextButton.js'
 
 const WorkerInfoPageStyled = styled.section`
      display: flex;
