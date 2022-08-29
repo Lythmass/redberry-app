@@ -7,7 +7,7 @@ const ImportPhotoStyled = styled.div`
 
      margin: 0 0 2rem 0;
 
-     border: 2px dashed #4386A9;
+     border: 2px dashed ${props => props.hasSubmitted && props.change == "./images/camera.png"? '#E52F2F' : '#4386A9'};
      border-radius: 8px;
 
      display: flex;
@@ -27,7 +27,7 @@ const ImportPhotoStyled = styled.div`
 
           text-align: center;
 
-          color: #4386A9;
+          color: ${props => props.hasSubmitted && props.change == "./images/camera.png"? '#E52F2F' : '#4386A9'};
           > img {
                width: ${props => props.change != "./images/camera.png" ? `358px` : "54px"};
                height: ${props => props.change != "./images/camera.png" && `244px`};
@@ -41,13 +41,23 @@ const ImportPhotoStyled = styled.div`
      }
 
 `
+
+const WarningStyled = styled.img`
+     position: absolute;
+     bottom: 1.25rem;
+     width: 23px;
+`
+
+
 export default function ImportPhoto(props) {
      const [change, setChange] = React.useState("./images/camera.png");
+
      React.useEffect(() => {
           if(localStorage.getItem("photo")) {
                setChange(JSON.parse(localStorage.getItem("photo")));
           }
      }, []);
+
      function handleChange(event) {
           const file = event.target.files[0];
           const reader = new FileReader();
@@ -59,7 +69,7 @@ export default function ImportPhoto(props) {
      }
 
      return (
-          <ImportPhotoStyled change = {change}>
+          <ImportPhotoStyled hasSubmitted = {props.hasSubmitted} change = {change}>
                <label htmlFor = "photo">
                     <img src = {change} />
                     ლეპტოპის ფოტოს <br /> ატვირთვა
@@ -69,6 +79,10 @@ export default function ImportPhoto(props) {
                     id = "photo" type = "file"
                     accept="image/*"
                />
+               {
+                    props.hasSubmitted && change == "./images/camera.png" ?
+                    <WarningStyled src = "./images/warning.png" /> : ""
+               }
           </ImportPhotoStyled>
      )
 }
