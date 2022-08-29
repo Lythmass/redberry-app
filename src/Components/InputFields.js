@@ -22,6 +22,7 @@ const InputFieldsStyled = styled.div`
           border: 1.9px solid ${(props) => props.error ? `#E52F2F` : `#8AC0E2`};
           outline: none;
           &:focus {
+               color: hsl(0, 100%, 0%, 1);
                border: 1.9px solid ${(props) => props.error ? `#E52F2F` : `#8AC0E2`};
           }
           ${props => props.keyName == "price" && `background: url(./images/lari.png)`};

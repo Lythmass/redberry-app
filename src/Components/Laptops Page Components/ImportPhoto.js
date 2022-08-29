@@ -51,12 +51,19 @@ const WarningStyled = styled.img`
 
 export default function ImportPhoto(props) {
      const [change, setChange] = React.useState("./images/camera.png");
-
      React.useEffect(() => {
           if(localStorage.getItem("photo")) {
                setChange(JSON.parse(localStorage.getItem("photo")));
           }
      }, []);
+
+     React.useEffect(() => {
+          if(props.hasSubmitted && !localStorage.getItem("photo")) {
+               props.setPhotoError(oldValue => oldValue == 1 ? oldValue : oldValue + 1);
+          } else {
+               props.setPhotoError(oldValue => oldValue == -1 ? oldValue : oldValue - 1);
+          }
+     });
 
      function handleChange(event) {
           const file = event.target.files[0];

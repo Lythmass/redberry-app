@@ -1,12 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import {useNavigate} from "react-router-dom"
+
 import GeneralHeader from '../GeneralHeader.js'
 import ImportPhoto from './ImportPhoto.js'
 import InputFields from '../InputFields.js'
 import NextButton from '../NextButton.js'
 import DropDowns from './DropDowns.js'
 import Radios from './Radios.js'
+import BackTextButton from './BackTextButton.js'
 
 const LaptopsPageStyled = styled.section`
      display: flex;
@@ -25,11 +28,24 @@ const FormStyled = styled.form`
      margin: 0 0 2rem 0;
 `
 
+const ButtonsWrapper = styled.div`
+     width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+`
+
 export default function LaptopsPage(props) {
      const [hasSubmitted, setHasSubmitted] = React.useState(0);
+
+     //Check errors for each type of field
      const [inputsError, setInputsError] = React.useState(0);
      const [dropDownsError, setDropDownsError] = React.useState(0);
+     const [radioError, setRadioError] = React.useState(0);
+     const [photoError, setPhotoError] = React.useState(0);
+
      const [refresh, setRefresh] = React.useState(false);
+     const goToSuccessPage = useNavigate();
 
      function handleSubmit(event) {
           event.preventDefault();
@@ -38,7 +54,13 @@ export default function LaptopsPage(props) {
                setRefresh(oldValue => !oldValue);
           }, 100);
      }
-
+     React.useEffect(() => {
+          if(hasSubmitted > 0) {
+               if(inputsError == -4 && dropDownsError == -2 && radioError == -2 && photoError == -1) {
+                    goToSuccessPage("/successpage");
+               }
+          }
+     }, [refresh]);
      return (
           <LaptopsPageStyled>
                <GeneralHeader
@@ -50,6 +72,7 @@ export default function LaptopsPage(props) {
                <FormStyled onSubmit = {(event) => handleSubmit(event)}>
                     <ImportPhoto
                          hasSubmitted = {hasSubmitted}
+                         setPhotoError = {setPhotoError}
                     />
                     <InputFields
                          type = "text"
@@ -108,6 +131,8 @@ export default function LaptopsPage(props) {
                          keyName = "disk"
                          option1 = "SSD"
                          option2 = "HDD"
+                         hasSubmitted = {hasSubmitted}
+                         setRadioError = {setRadioError}
                     />
                     <InputFields
                          type = "date"
@@ -130,12 +155,17 @@ export default function LaptopsPage(props) {
                          keyName = "newold"
                          option1 = "ახალი"
                          option2 = "მეორადი"
+                         hasSubmitted = {hasSubmitted}
+                         setRadioError = {setRadioError}
                     />
-                    <NextButton
-                         type = "submit"
-                         text = "დამახსოვრება"
-                         width = "162px"
-                    />
+                    <ButtonsWrapper>
+                         <BackTextButton text = "უკან" />
+                         <NextButton
+                              type = "submit"
+                              text = "დამახსოვრება"
+                              width = "162px"
+                         />
+                    </ButtonsWrapper>
                </FormStyled>
           </LaptopsPageStyled>
      )

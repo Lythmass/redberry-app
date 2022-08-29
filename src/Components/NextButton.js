@@ -7,6 +7,7 @@ const NextButtonStyled = styled.button`
      display: flex;
      justify-content: center;
      align-items: center;
+
      align-self: flex-end;
 
      background-color: #62A1EB;
