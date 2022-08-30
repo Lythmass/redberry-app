@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const DropDownsStyled = styled.div`
      > select {
+
           width: 358px;
           height: 60px;
           font-size: 18px;
@@ -28,9 +29,12 @@ const DropDownsStyled = styled.div`
           -webkit-appearance: none;
           appearance: none;
           @media(min-width: 1200px) {
-               width: ${props => props.width};
-               background-position: 900px center;
-               height: 80px;
+               display: flex;
+               background-position: 95% center;
+               height: 60px;
+               margin-top: 4px;
+               flex: 1 1 33%;
+               max-width: 330px;
           }
      }
 `

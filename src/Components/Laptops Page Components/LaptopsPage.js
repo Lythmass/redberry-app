@@ -13,6 +13,7 @@ import BackTextButton from './BackTextButton.js'
 
 const LaptopsPageStyled = styled.section`
      display: flex;
+     width: 100%;
      justify-content: center;
      flex-direction: column;
      align-items: center;
@@ -26,6 +27,19 @@ const FormStyled = styled.form`
      gap: 1rem;
      padding-top: 2rem;
      margin: 0 0 2rem 0;
+     > hr {
+          display: none;
+     }
+     @media(min-width: 1200px) {
+          width: 878px;
+          gap: 2.75rem;
+          > hr {
+               margin: 1rem 0;
+               display: block;
+               width: 100%;
+               border-color: hsl(0, 100%, 1%, 0.2);
+          }
+     }
 `
 
 const ButtonsWrapper = styled.div`
@@ -33,6 +47,24 @@ const ButtonsWrapper = styled.div`
      display: flex;
      align-items: center;
      justify-content: space-between;
+`
+
+const InputsWrapper = styled.div`
+     display: flex;
+     flex-direction: column;
+     width: 100%;
+     gap: 1rem;
+     justify-content: center;
+     @media (min-width: 1200px) {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          gap: 2rem;
+
+          align-items: center;
+          justify-content: center;
+
+     }
 `
 
 export default function LaptopsPage(props) {
@@ -74,90 +106,104 @@ export default function LaptopsPage(props) {
                          hasSubmitted = {hasSubmitted}
                          setPhotoError = {setPhotoError}
                     />
-                    <InputFields
-                         type = "text"
-                         label = "ლეპტოპის სახელი"
-                         description = "ლათინური ასოები, ციფრები, !@#$%^&*()_+="
-                         keyName = "laptopName"
-                         hasSubmitted = {hasSubmitted}
-                         setInputsError = {setInputsError}
-                         width = "463px"
-                    />
-                    <DropDowns
-                         name = "ლეპტოპის ბრენდი"
-                         api = 'brands'
-                         keyName = "brands"
-                         hasSubmitted = {hasSubmitted}
-                         setDropDownsError = {setDropDownsError}
-                         width = "926px"
-                    />
-                    <DropDowns
-                         name = "CPU"
-                         api = 'cpus'
-                         keyName = "cpus"
-                         hasSubmitted = {hasSubmitted}
-                         setDropDownsError = {setDropDownsError}
-                         width = "926px"
-                    />
-                    <InputFields
-                         type = "number"
-                         label = "CPU-ს ბირთვი"
-                         description = "მხოლოდ ციფრები"
-                         keyName = "cores"
-                         hasSubmitted = {hasSubmitted}
-                         setInputsError = {setInputsError}
-                         width = "463px"
-                    />
-                    <InputFields
-                         type = "number"
-                         label = "CPU-ს ნაკადი"
-                         description = "მხოლოდ ციფრები"
-                         keyName = "thread"
-                         hasSubmitted = {hasSubmitted}
-                         setInputsError = {setInputsError}
-                         width = "463px"
-                    />
-                    <InputFields
-                         type = "number"
-                         label = "ლეპტოპის RAM (GB)"
-                         description = "მხოლოდ ციფრები"
-                         keyName = "ram"
-                         hasSubmitted = {hasSubmitted}
-                         setInputsError = {setInputsError}
-                         width = "463px"
-                    />
-                    <Radios
-                         name = "მეხსიერების ტიპი"
-                         keyName = "disk"
-                         option1 = "SSD"
-                         option2 = "HDD"
-                         hasSubmitted = {hasSubmitted}
-                         setRadioError = {setRadioError}
-                    />
-                    <InputFields
-                         type = "date"
-                         label = "შექმნის რიცხვი (არჩევითი)"
-                         keyName = "date"
-                         hasSubmitted = {hasSubmitted}
-                         width = "463px"
-                    />
-                    <InputFields
-                         type = "number"
-                         label = "ლეპტოპის ფასი"
-                         description = "მხოლოდ ციფრები"
-                         keyName = "price"
-                         hasSubmitted = {hasSubmitted}
-                         setInputsError = {setInputsError}
-                         width = "463px"
-                    />
-                    <Radios
-                         name = "ლეპტოპის მდგომარეობა"
-                         keyName = "newold"
-                         option1 = "ახალი"
-                         option2 = "მეორადი"
-                         hasSubmitted = {hasSubmitted}
-                         setRadioError = {setRadioError}
-                    />
+                    <InputsWrapper>
+                         <InputFields
+                              type = "text"
+                              label = "ლეპტოპის სახელი"
+                              description = "ლათინური ასოები, ციფრები, !@#$%^&*()_+="
+                              keyName = "laptopName"
+                              hasSubmitted = {hasSubmitted}
+                              setInputsError = {setInputsError}
+                              width = "463px"
+                         />
+                         <DropDowns
+                              name = "ლეპტოპის ბრენდი"
+                              api = 'brands'
+                              keyName = "brands"
+                              hasSubmitted = {hasSubmitted}
+                              setDropDownsError = {setDropDownsError}
+                              width = "395px"
+                         />
+                    </InputsWrapper>
+                    <hr />
+                    <InputsWrapper>
+                         <DropDowns
+                              name = "CPU"
+                              api = 'cpus'
+                              keyName = "cpus"
+                              hasSubmitted = {hasSubmitted}
+                              setDropDownsError = {setDropDownsError}
+                              width = "463px"
+                         />
+                         <InputFields
+                              type = "number"
+                              label = "CPU-ს ბირთვი"
+                              description = "მხოლოდ ციფრები"
+                              keyName = "cores"
+                              hasSubmitted = {hasSubmitted}
+                              setInputsError = {setInputsError}
+                              width = "395px"
+                         />
+                         <InputFields
+                              type = "number"
+                              label = "CPU-ს ნაკადი"
+                              description = "მხოლოდ ციფრები"
+                              keyName = "thread"
+                              hasSubmitted = {hasSubmitted}
+                              setInputsError = {setInputsError}
+                              width = "395px"
+                         />
+                    </InputsWrapper>
+                    <InputsWrapper>
+                         <InputFields
+                              type = "number"
+                              label = "ლეპტოპის RAM (GB)"
+                              description = "მხოლოდ ციფრები"
+                              keyName = "ram"
+                              hasSubmitted = {hasSubmitted}
+                              setInputsError = {setInputsError}
+                              width = "463px"
+                         />
+                         <Radios
+                              name = "მეხსიერების ტიპი"
+                              keyName = "disk"
+                              option1 = "SSD"
+                              option2 = "HDD"
+                              hasSubmitted = {hasSubmitted}
+                              setRadioError = {setRadioError}
+                         />
+
+                    </InputsWrapper>
+                    <hr />
+                    <InputsWrapper>
+                         <InputFields
+                              type = "date"
+                              label = "შექმნის რიცხვი (არჩევითი)"
+                              keyName = "date"
+                              hasSubmitted = {hasSubmitted}
+
+                              description = "თარიღი"
+                         />
+                         <InputFields
+                              type = "number"
+                              label = "ლეპტოპის ფასი"
+                              description = "მხოლოდ ციფრები"
+                              keyName = "price"
+                              hasSubmitted = {hasSubmitted}
+                              setInputsError = {setInputsError}
+                              width = "463px"
+                         />
+                    </InputsWrapper>
+                    <InputsWrapper>
+                         <Radios
+                              name = "ლეპტოპის მდგომარეობა"
+                              keyName = "newold"
+                              option1 = "ახალი"
+                              option2 = "მეორადი"
+                              hasSubmitted = {hasSubmitted}
+                              setRadioError = {setRadioError}
+                         />
+                    </InputsWrapper>
                     <ButtonsWrapper>
                          <BackTextButton text = "უკან" />
                          <NextButton

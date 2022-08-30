@@ -5,6 +5,9 @@ const InputFieldsStyled = styled.div`
      display: flex;
      flex-direction: column;
      gap: 0.5rem;
+     @media(min-width: 1200px) {
+          flex: 1 1 33%;
+     }
      > label {
           font-size: 18px;
           font-weight: bold;
@@ -54,7 +57,8 @@ const InputFieldsStyled = styled.div`
      }
      @media(min-width: 1200px) {
           > input {
-               width: ${props => props.width}
+               display: flex;
+               width: auto;
           }
      }
 `

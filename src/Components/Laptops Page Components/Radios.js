@@ -3,9 +3,13 @@ import styled from 'styled-components'
 
 const RadiosStyled = styled.div`
      display: flex;
-     width: 100%;
      flex-direction: column;
+
      gap: 1.25rem;
+     @media(min-width: 1200px) {
+          width: 10%;
+          flex-grow: 1;
+     }
 `
 
 const HeaderLabelStyled = styled.label`
@@ -14,10 +18,10 @@ const HeaderLabelStyled = styled.label`
      position: relative;
      color: ${props => props.hasSubmitted && props.change == 0 ? "#E52F2F" : "black"};
      > span {
+          padding-left: 2rem;
           > img {
                width: 22px;
                position: absolute;
-               right: 1rem;
           }
      }
 
