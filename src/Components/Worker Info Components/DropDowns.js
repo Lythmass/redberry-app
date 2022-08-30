@@ -96,6 +96,7 @@ export default function DropDowns(props) {
                props.setTeamsId(index);
           } else {
                setPosition(localStorage.getItem(props.keyName));
+               localStorage.setItem('positionId', event.target.selectedIndex);
           }
      }
      return (

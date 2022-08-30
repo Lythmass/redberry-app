@@ -9,7 +9,7 @@ import InputFields from '../InputFields.js'
 import NextButton from '../NextButton.js'
 import DropDowns from './DropDowns.js'
 import Radios from './Radios.js'
-import BackTextButton from './BackTextButton.js'
+import BackTextButton from '../BackTextButton.js'
 
 const LaptopsPageStyled = styled.section`
      display: flex;
@@ -64,6 +64,15 @@ const InputsWrapper = styled.div`
           align-items: center;
           justify-content: center;
 
+     }
+`
+
+const LogoStyled = styled.img`
+     display: none;
+     width: 85px;
+     padding: 0 0 3rem 0;
+     @media(min-width: 1200px) {
+          display: block;
      }
 `
 
@@ -205,7 +214,11 @@ export default function LaptopsPage(props) {
                          />
                     </InputsWrapper>
                     <ButtonsWrapper>
-                         <BackTextButton text = "უკან" />
+                         <BackTextButton
+                              to = '/workerinfo'
+                              text = "უკან"
+                              fontSize = "16px"
+                         />
                          <NextButton
                               type = "submit"
                               text = "დამახსოვრება"
@@ -213,6 +226,7 @@ export default function LaptopsPage(props) {
                          />
                     </ButtonsWrapper>
                </FormStyled>
+               <LogoStyled src = "./images/logo2.png" />
           </LaptopsPageStyled>
      )
 }

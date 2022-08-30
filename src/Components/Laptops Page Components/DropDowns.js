@@ -76,6 +76,12 @@ export default function DropDowns(props) {
      function handleChange(event) {
           localStorage.setItem(props.keyName, event.target.value);
           setChange(event.target.value);
+          if(props.keyName == 'brands') {
+               localStorage.setItem('brandId', event.target.selectedIndex);
+          }
+          if(props.keyName == 'cpus') {
+               localStorage.setItem('cpuId', event.target.selectedIndex);
+          }
      }
      return (
           <DropDownsStyled

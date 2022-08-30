@@ -6,8 +6,8 @@ export default function BackTextButton(props) {
      return (
           <div>
                <Link
-                    to = "/workerinfo"
-                    style = {{textDecoration: 'none', color: "#62A1EB"}}
+                    to = {props.to}
+                    style = {{textDecoration: 'none', color: "#62A1EB", fontSize: props.fontSize}}
                >
                     {props.text}
                </Link>
