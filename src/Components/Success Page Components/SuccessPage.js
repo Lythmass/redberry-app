@@ -8,17 +8,48 @@ import SuccessButton from './SuccessButton.js'
 
 const SuccessPageStyled = styled.section`
      display: flex;
-     min-height: 100vh;
      justify-content: center;
      flex-direction: column;
      align-items: center;
+
      text-align: center;
      font-weight: bold;
+
+     height: 100vh;
+
      > img {
           width: 300px;
      }
      > h1 {
+          margin: 0 auto;
+          padding: 0 3.26rem;
           line-height: 40px;
+     }
+
+     @media(min-width: 1200px) {
+          background-color: white;
+          width: 847px;
+          height: 537px;
+
+          border-radius: 8px;
+          > img {
+               width: 250px;
+          }
+          > h1 {
+               line-height: 0;
+               margin-bottom: 4rem;
+               padding: 0;
+          }
+     }
+`
+
+const BackgroundStyled = styled.div`
+     @media(min-width: 1200px) {
+          display: flex;
+          justify-content: center;
+          height: 100vh;
+          align-items: center;
+          background-color: hsl(0, 100%, 0%, 0.75);
      }
 `
 
@@ -26,6 +57,10 @@ const ButtonsWrapper = styled.div`
      display: flex;
      margin: 10rem 0 0 0;
      flex-direction: column;
+     @media(min-width: 1200px) {
+          margin: 0;
+     }
+
 `
 
 export default function SuccessPage() {
@@ -84,17 +119,21 @@ export default function SuccessPage() {
      }, [data]);
 
      return (
-          <SuccessPageStyled>
-               <img src = "./images/success.png" />
-               <h1>ჩანაწერი <br /> დამატებულია!</h1>
-               <ButtonsWrapper>
-                    <SuccessButton />
-                    <BackTextButton
-                         text = "მთავარი"
-                         to = '/'
-                         fontSize = "24px"
-                    />
-               </ButtonsWrapper>
-          </SuccessPageStyled>
+          <BackgroundStyled>
+               <SuccessPageStyled>
+                    <img src = "./images/success.png" />
+                    <h1>ჩანაწერი დამატებულია!</h1>
+                    <ButtonsWrapper>
+                         <SuccessButton />
+                         <BackTextButton
+                              text = "მთავარი"
+                              to = '/'
+                              fontSize = "20px"
+                              name = "success"
+                         />
+                    </ButtonsWrapper>
+               </SuccessPageStyled>
+          </BackgroundStyled>
+
      )
 }
