@@ -150,7 +150,7 @@ export default function Inputfields(props) {
      //Validate georgian number
      function validatePhonePattern() {
           //Georgian phone number format in regexp
-          const regex = new RegExp("^[\+]?[9-9]{2}[5][ ]?[0-9]{3}[ ]?[0-9]{2}[ ]?[0-9]{2}[ ]?[0-9]{2}$");
+          const regex = new RegExp("[+]{1}?[9-9]{2}[5]?[0-9]{3}?[0-9]{2}?[0-9]{2}?[0-9]{2}$");
 
           if(props.type == "tel") {
                if(!change.match(regex)) {

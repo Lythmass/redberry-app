@@ -129,6 +129,7 @@ export default function ImportPhoto(props) {
 
      function handleChange(event) {
           const file = event.target.files[0];
+          props.setImage(file);
           const reader = new FileReader();
           reader.onload = function(event) {
                setChange(event.target.result);

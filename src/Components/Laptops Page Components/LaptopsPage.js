@@ -110,10 +110,11 @@ export default function LaptopsPage(props) {
                     numOfPage = "2/2"
                     goBack = "/workerinfo"
                />
-               <FormStyled onSubmit = {(event) => handleSubmit(event)}>
+               <FormStyled encType='multipart/form-data' onSubmit = {(event) => handleSubmit(event)}>
                     <ImportPhoto
                          hasSubmitted = {hasSubmitted}
                          setPhotoError = {setPhotoError}
+                         setImage = {props.setImage}
                     />
                     <InputsWrapper>
                          <InputFields
@@ -207,8 +208,8 @@ export default function LaptopsPage(props) {
                          <Radios
                               name = "ლეპტოპის მდგომარეობა"
                               keyName = "newold"
-                              option1 = "ახალი"
-                              option2 = "მეორადი"
+                              option1 = "new"
+                              option2 = "used"
                               hasSubmitted = {hasSubmitted}
                               setRadioError = {setRadioError}
                          />

@@ -21,7 +21,7 @@ const GeneralHeaderStyled = styled.div`
           }
           > h1 {
                font-weight: 700;
-               font-size: 16px;
+               font-size: 18px;
                line-height: 20px;
                position: relative;
                cursor: default;

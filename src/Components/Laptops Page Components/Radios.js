@@ -111,7 +111,7 @@ export default function Radios(props) {
                               />
                          }
 
-                         <label htmlFor = {props.option1}>{props.option1}</label>
+                         <label htmlFor = {props.option1}>{props.option1 == 'new' ? 'ახალი' : props.option1}</label>
                     </div>
                     <div>
                          {
@@ -134,7 +134,7 @@ export default function Radios(props) {
 
                          }
 
-                         <label htmlFor = {props.option2}>{props.option2}</label>
+                         <label htmlFor = {props.option2}>{props.option2 == 'used' ? 'მეორადი' : props.option2}</label>
                     </div>
 
                </RadiosWrapperStyled>

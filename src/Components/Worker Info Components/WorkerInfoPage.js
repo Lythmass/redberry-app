@@ -81,7 +81,7 @@ export default function WorkerInfoPage() {
                />
 
                {/* Inputs and DropDowns*/}
-               <FormStyled onSubmit = {(event) => handleSubmit(event)}>
+               <FormStyled encType='multipart/form-data' onSubmit = {(event) => handleSubmit(event)}>
                     <FirstLastNameStyled>
                          <InputFields
                               type = "text"
@@ -122,7 +122,7 @@ export default function WorkerInfoPage() {
                          width = "926px"
                     />
                     <InputFields
-                         type = "mail"
+                         type = "email"
                          label = "მეილი"
                          description = "უნდა მთავრდებოდეს @redberry.ge-ით"
                          keyName = "mail"

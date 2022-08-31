@@ -63,9 +63,10 @@ const ButtonsWrapper = styled.div`
 
 `
 
-export default function SuccessPage() {
+export default function SuccessPage(props) {
 
-     const [data, setData] = React.useState({});
+     const [object, setObject] = React.useState(false);
+     const [info, setInfo] = React.useState({});
      const [refresh, setRefresh] = React.useState(false);
      const [names, setNames] = React.useState(['name', 'lastname',
                                              'teamId', 'positionId',
@@ -80,43 +81,62 @@ export default function SuccessPage() {
 
      React.useEffect(() => {
           //Check if any of the input fields is empty
-          // for(let i = 0; i < names.length; i++) {
-          //      if(localStorage.getItem(names[i]) == null || localStorage.getItem(names[i]) == undefined) {
-          //           repeat('/workerinfo'); //Return to the first input page
-          //           setRefresh(true);
-          //      }
-          // }
-
-          setData(() => {
-               return {
-                    name: localStorage.getItem('name'),
-                    surname: localStorage.getItem('lastname'),
-                    team_id: localStorage.getItem('teamId'),
-                    position_id: localStorage.getItem('positionId'),
-                    phone_number: localStorage.getItem('phone'),
-                    email: localStorage.getItem('mail'),
-                    token: 'c918ee3cd471680b4a9186a55c8caf93',
-                    laptop_name: localStorage.getItem('laptopName'),
-                    laptop_image: localStorage.getItem('photo'),
-                    laptop_brand_id: localStorage.getItem('brandId'),
-                    laptop_cpu: localStorage.getItem('cpus'),
-                    laptop_cpu_cores: localStorage.getItem('cores'),
-                    laptop_threads: localStorage.getItem('thread'),
-                    laptop_ram: localStorage.getItem('ram'),
-                    laptop_hard_drive_type: localStorage.getItem('disk'),
-                    laptop_state: localStorage.getItem('newold'),
-                    laptop_purchase_date: localStorage.getItem('date'),
-                    laptop_price: localStorage.getItem('price')
+          for(let i = 0; i < names.length; i++) {
+               if(localStorage.getItem(names[i]) == null || localStorage.getItem(names[i]) == undefined) {
+                    repeat('/workerinfo'); //Return to the first input page
+                    setRefresh(true);
                }
-          });
-          localStorage.clear();
+               setObject(true);
+          }
      }, []);
+     React.useEffect(() => {
+          if(object) {
+
+               setInfo(() => {
+                    return {
+                         'name': localStorage.getItem('name'),
+                         'surname': localStorage.getItem('lastname'),
+                         'team_id': localStorage.getItem('teamId'),
+                         'position_id': localStorage.getItem('positionId'),
+                         'phone_number': localStorage.getItem('phone'),
+                         'email': localStorage.getItem('mail'),
+                         'token': '147d5d75e2bbc7e97ddee819aa492588',
+                         'laptop_name': localStorage.getItem('laptopName'),
+                         'laptop_image': props.image,
+                         'laptop_brand_id': localStorage.getItem('brandId'),
+                         'laptop_cpu': localStorage.getItem('cpus'),
+                         'laptop_cpu_cores': localStorage.getItem('cores'),
+                         'laptop_cpu_threads': localStorage.getItem('thread'),
+                         'laptop_ram': localStorage.getItem('ram'),
+                         'laptop_hard_drive_type': localStorage.getItem('disk'),
+                         'laptop_state': localStorage.getItem('newold'),
+                         'laptop_purchase_date': localStorage.getItem('date') || '',
+                         'laptop_price': localStorage.getItem('price')
+                    }
+               });
+          }
+
+          //localStorage.clear();
+     }, [object]);
 
      React.useEffect(() => {
-          if(Object.keys(data).length > 0) {
-               console.log(data);
+          if(Object.keys(info).length > 1) {
+               const form_data = new FormData();
+               for(let i = 0; i < Object.keys(info).length; i++) {
+                    form_data.append(Object.keys(info)[i], Object.values(info)[i]);
+               }
+               const requestOptions = {
+                    method: 'POST',
+                    headers: {
+                         'Accept': 'application/json',
+                   },
+                    body: form_data
+               };
+               fetch('https://pcfy.redberryinternship.ge/api/laptop/create', requestOptions)
+               .then(response => response.json())
+               .then(data => console.log(data))
           }
-     }, [data]);
+     }, [info]);
 
      return (
           <BackgroundStyled>

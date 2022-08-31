@@ -12,15 +12,18 @@ import LandingPage from './Components/Landing Page Components/LandingPage.js'
 import WorkerInfoPage from './Components/Worker Info Components/WorkerInfoPage.js'
 import LaptopsPage from './Components/Laptops Page Components/LaptopsPage.js'
 import SuccessPage from './Components/Success Page Components/SuccessPage.js'
+import ListPage from './Components/List Page Components/ListPage.js'
 
 export default function App() {
+     const [image, setImage] = React.useState('');
      return (
           <BrowserRouter>
                <Routes>
                     <Route path = "/" element = {<LandingPage />} />
                     <Route path = "/workerinfo" element = {<WorkerInfoPage />} />
-                    <Route path = "/laptopspage" element = {<LaptopsPage />} />
-                    <Route path = "/successpage" element = {<SuccessPage />} />
+                    <Route path = "/laptopspage" element = {<LaptopsPage setImage = {setImage} />} />
+                    <Route path = "/successpage" element = {<SuccessPage image = {image}/>} />
+                    <Route path = "/list" element = {<ListPage />} />
                </Routes>
 
           </BrowserRouter>
