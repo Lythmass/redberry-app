@@ -19,7 +19,7 @@ export default function ListPage() {
      const [info, setInfo] = React.useState({});
 
      React.useEffect(() => {
-          fetch('https://pcfy.redberryinternship.ge/api/laptops?token=147d5d75e2bbc7e97ddee819aa492588')
+          fetch('https://pcfy.redberryinternship.ge/api/laptops?token=431408f3964369382be82953e06778f0')
           .then(response => response.json())
           .then(data => setInfo(data.data));
      }, []);

@@ -38,7 +38,7 @@ const FirstLastNameStyled = styled.div`
 `
 
 export default function WorkerInfoPage() {
-     const [teamsId, setTeamsId] = React.useState(localStorage.getItem("teamId"));
+     const [teamsId, setTeamsId] = React.useState(localStorage.getItem("teamId") || '');
      const [hasSubmitted, setHasSubmitted] = React.useState(0);
      const [inputsError, setInputsError] = React.useState(0);
      const [dropDownsError, setDropDownsError] = React.useState(0);

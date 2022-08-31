@@ -4,13 +4,25 @@ import styled from 'styled-components'
 import EachPerson from './EachPerson.js'
 
 const PersonsWrapperStyled = styled.div`
-     margin-top: 2rem;
+     margin: 2rem 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+     gap: 2rem;
+`
+
+const AlignWrapper = styled.div`
      display: flex;
      justify-content: center;
      flex-direction: column;
      align-items: center;
-
      gap: 2rem;
+     @media (min-width: 1200px) {
+          width: 1146px;
+          flex-flow: row wrap;
+          justify-content: flex-start;
+     }
 `
 
 export default function PersonsWrapper(props) {
@@ -30,7 +42,10 @@ export default function PersonsWrapper(props) {
 
      return (
           <PersonsWrapperStyled>
-               {listInfo}
+               <AlignWrapper>
+                    {listInfo}
+
+               </AlignWrapper>
           </PersonsWrapperStyled>
      )
 }

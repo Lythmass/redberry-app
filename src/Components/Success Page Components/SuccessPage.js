@@ -100,7 +100,7 @@ export default function SuccessPage(props) {
                          'position_id': localStorage.getItem('positionId'),
                          'phone_number': localStorage.getItem('phone'),
                          'email': localStorage.getItem('mail'),
-                         'token': '147d5d75e2bbc7e97ddee819aa492588',
+                         'token': '431408f3964369382be82953e06778f0',
                          'laptop_name': localStorage.getItem('laptopName'),
                          'laptop_image': props.image,
                          'laptop_brand_id': localStorage.getItem('brandId'),
@@ -116,11 +116,11 @@ export default function SuccessPage(props) {
                });
           }
 
-          //localStorage.clear();
      }, [object]);
 
      React.useEffect(() => {
           if(Object.keys(info).length > 1) {
+               localStorage.clear();
                const form_data = new FormData();
                for(let i = 0; i < Object.keys(info).length; i++) {
                     form_data.append(Object.keys(info)[i], Object.values(info)[i]);

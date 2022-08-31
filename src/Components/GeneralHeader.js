@@ -17,20 +17,22 @@ const GeneralHeaderStyled = styled.div`
                flex-direction: row;
                justify-content: center;
                gap: 4rem;
-               padding: 2.5rem 0;
+               padding: 1.2rem 0;
           }
           > h1 {
-               font-weight: 700;
+               font-weight: bold;
                font-size: 18px;
                line-height: 20px;
                position: relative;
                cursor: default;
                margin: 0;
                @media (min-width: 1200px) {
-                    font-size: 20px;
+                    font-size: 25px;
+                    font-weight: bold;
+                    padding: 0;
                     > span {
                          position: absolute;
-                         top: 1.25rem;
+                         top: 2rem;
                          left: 0.9rem;
                          > img {
                               width: 90%;
