@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import GeneralHeader from '../GeneralHeader.js'
 import TopInfo from './TopInfo.js'
+import MiddleInfo from './MiddleInfo.js'
 
 const UniquePageStyled = styled.section`
      width: 100%;
@@ -10,12 +11,18 @@ const UniquePageStyled = styled.section`
      flex-direction: column;
      justify-content: center;
      align-items: center;
+     > hr {
+          margin: 2rem 0;
+          display: block;
+          width: 358px;
+          border-color: hsl(0, 100%, 1%, 0.2);
+     }
 `
 
 export default function UniquePage(props) {
 
      const [info, setInfo] = React.useState({});
-     
+
 
      React.useEffect(() => {
           fetch(`https://pcfy.redberryinternship.ge/api/laptop/${props.id}?token=431408f3964369382be82953e06778f0`)
@@ -31,6 +38,9 @@ export default function UniquePage(props) {
                     goBack = "/list"
                />
                {Object.keys(info).length > 0 && <TopInfo info = {info} />}
+               <hr />
+               {Object.keys(info).length > 0 && <MiddleInfo info = {info} />}
+               <hr />
           </UniquePageStyled>
      )
 }
