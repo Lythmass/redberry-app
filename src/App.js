@@ -20,6 +20,7 @@ export default function App() {
      const [pageCounter, setPageCounter] = React.useState([]);
      const [listPages, setListPages] = React.useState([]);
 
+     //Add each page for specific laptop
      React.useEffect(() => {
           if(pageCounter.length > 0) {
                setListPages(() => {
