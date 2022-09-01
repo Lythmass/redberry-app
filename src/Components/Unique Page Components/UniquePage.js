@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import GeneralHeader from '../GeneralHeader.js'
 import TopInfo from './TopInfo.js'
 import MiddleInfo from './MiddleInfo.js'
+import BottomInfo from './BottomInfo.js'
 
 const UniquePageStyled = styled.section`
      width: 100%;
@@ -41,6 +42,7 @@ export default function UniquePage(props) {
                <hr />
                {Object.keys(info).length > 0 && <MiddleInfo info = {info} />}
                <hr />
+               {Object.keys(info).length > 0 && <BottomInfo info = {info} />}
           </UniquePageStyled>
      )
 }
