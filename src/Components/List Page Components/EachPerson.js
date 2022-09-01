@@ -67,7 +67,7 @@ export default function EachPerson(props) {
                          {props.laptop_name}
                     </p>
                     <Link
-                         to = '/'
+                         to = {`/page-${props.id}`}
                          style = {{color: '#4386A9'}}
                     >
                          მეტის ნახვა

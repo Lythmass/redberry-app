@@ -13,9 +13,29 @@ import WorkerInfoPage from './Components/Worker Info Components/WorkerInfoPage.j
 import LaptopsPage from './Components/Laptops Page Components/LaptopsPage.js'
 import SuccessPage from './Components/Success Page Components/SuccessPage.js'
 import ListPage from './Components/List Page Components/ListPage.js'
+import UniquePage from './Components/Unique Page Components/UniquePage.js'
 
 export default function App() {
      const [image, setImage] = React.useState('');
+     const [pageCounter, setPageCounter] = React.useState([]);
+     const [listPages, setListPages] = React.useState([]);
+
+     React.useEffect(() => {
+          if(pageCounter.length > 0) {
+               setListPages(() => {
+                    return pageCounter.map(eachPage => {
+                         return (
+                              <Route
+                                   path = {`page-${eachPage}`}
+                                   element = {<UniquePage id = {eachPage}/>}
+                                   key = {eachPage}
+                              />
+                         )
+                    });
+               })
+          }
+     }, [pageCounter]);
+
      return (
           <BrowserRouter>
                <Routes>
@@ -23,7 +43,8 @@ export default function App() {
                     <Route path = "/workerinfo" element = {<WorkerInfoPage />} />
                     <Route path = "/laptopspage" element = {<LaptopsPage setImage = {setImage} />} />
                     <Route path = "/successpage" element = {<SuccessPage image = {image}/>} />
-                    <Route path = "/list" element = {<ListPage />} />
+                    <Route path = "/list" element = {<ListPage setPageCounter = {setPageCounter}/>} />
+                    {listPages}
                </Routes>
 
           </BrowserRouter>

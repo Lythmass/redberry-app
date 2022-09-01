@@ -34,6 +34,7 @@ export default function PersonsWrapper(props) {
                     surname = {eachInfo.user.surname}
                     laptop_name = {eachInfo.laptop.name}
                     image = {eachInfo.laptop.image}
+                    id = {eachInfo.laptop.id}
                     key = {eachInfo.laptop.id}
                />
           )

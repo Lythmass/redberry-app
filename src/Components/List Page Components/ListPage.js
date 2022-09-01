@@ -14,7 +14,7 @@ const ListPageStyled = styled.section`
 `
 
 
-export default function ListPage() {
+export default function ListPage(props) {
 
      const [info, setInfo] = React.useState({});
 
@@ -23,6 +23,16 @@ export default function ListPage() {
           .then(response => response.json())
           .then(data => setInfo(data.data));
      }, []);
+
+     React.useEffect(() => {
+          if(Object.keys(info).length > 0) {
+               props.setPageCounter(oldValue => {
+                    return info.map(eachId => {
+                         return eachId.laptop.id;
+                    });
+               });
+          }
+     }, [info]);
 
      return (
           <ListPageStyled>
