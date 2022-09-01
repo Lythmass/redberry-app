@@ -18,6 +18,11 @@ const UniquePageStyled = styled.section`
           width: 358px;
           border-color: hsl(0, 100%, 1%, 0.2);
      }
+     @media(min-width: 1200px) {
+          > hr {
+               width: 1178px;
+          }
+     }
 `
 
 export default function UniquePage(props) {
