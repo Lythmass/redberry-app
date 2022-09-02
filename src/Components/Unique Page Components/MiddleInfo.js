@@ -10,10 +10,20 @@ const MiddleInfoStyled = styled.div`
 
      gap: 0.5rem;
 
-     > img {
-          width: 358px;
-          padding-bottom: 1.75rem;
+     @media (min-width: 1200px) {
+          flex-direction: row;
      }
+
+
+`
+
+const SectionStyled = styled.section`
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+
+     gap: 0.5rem;
      > div {
           width: 100%;
           display: flex;
@@ -27,10 +37,27 @@ const MiddleInfoStyled = styled.div`
                transform: translateX(2rem);
           }
           > h4 {
+               color: #2E2E2E;
                font-size: 14px;
           }
      }
 
+     @media(min-width: 1200px) {
+          width: 580px;
+          gap: 1.25rem;
+          justify-content: flex-start;
+          height: 200px;
+          > div {
+               width: 100%;
+               padding: 0;
+               > h4, p {
+
+                    font-size: 22px;
+                    width: 300px;
+                    transform: translateX(2rem);
+               }
+          }
+     }
 `
 
 export default function MiddleInfo(props) {
@@ -45,34 +72,39 @@ export default function MiddleInfo(props) {
 
      return (
           <MiddleInfoStyled>
-               <div>
-                    <h4>ლეპტოპის სახელი:</h4>
-                    <p>{props.info.laptop.name}</p>
-               </div>
-               <div>
-                    <h4>ლეპტოპის ბრენდი:</h4>
-                    {brand.length > 0 && <p>{brand[props.info.laptop.brand_id - 1].name}</p>}
-               </div>
-               <div>
-                    <h4>RAM:</h4>
-                    <p>{props.info.laptop.ram}</p>
-               </div>
-               <div>
-                    <h4>მეხსიერების ტიპი:</h4>
-                    <p>{props.info.laptop.hard_drive_type}</p>
-               </div>
-               <div>
-                    <h4>CPU:</h4>
-                    <p>{props.info.laptop.cpu.name}</p>
-               </div>
-               <div>
-                    <h4>CPU-ს ბირთვი:</h4>
-                    <p>{props.info.laptop.cpu.cores}</p>
-               </div>
-               <div>
-                    <h4>CPU-ს ნაკადი:</h4>
-                    <p>{props.info.laptop.cpu.threads}</p>
-               </div>
+               <SectionStyled>
+                    <div>
+                         <h4>ლეპტოპის სახელი:</h4>
+                         <p>{props.info.laptop.name}</p>
+                    </div>
+                    <div>
+                         <h4>ლეპტოპის ბრენდი:</h4>
+                         {brand.length > 0 && <p>{brand[props.info.laptop.brand_id - 1].name}</p>}
+                    </div>
+                    <div>
+                         <h4>RAM:</h4>
+                         <p>{props.info.laptop.ram}</p>
+                    </div>
+                    <div>
+                         <h4>მეხსიერების ტიპი:</h4>
+                         <p>{props.info.laptop.hard_drive_type}</p>
+                    </div>
+               </SectionStyled>
+               <SectionStyled>
+                    <div>
+                         <h4>CPU:</h4>
+                         <p>{props.info.laptop.cpu.name}</p>
+                    </div>
+                    <div>
+                         <h4>CPU-ს ბირთვი:</h4>
+                         <p>{props.info.laptop.cpu.cores}</p>
+                    </div>
+                    <div>
+                         <h4>CPU-ს ნაკადი:</h4>
+                         <p>{props.info.laptop.cpu.threads}</p>
+                    </div>
+               </SectionStyled>
+
           </MiddleInfoStyled>
      )
 }

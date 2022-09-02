@@ -49,6 +49,7 @@ const SectionStyled = styled.section`
           }
           > h4 {
                font-size: 14px;
+               color: #2E2E2E;
           }
      }
 
