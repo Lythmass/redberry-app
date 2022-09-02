@@ -21,7 +21,8 @@ const TopInfoStyled = styled.div`
           width: 1178px;
           gap: 4rem;
           > img {
-               width: 577px;
+               min-width: 562px;
+               object-fit: cover;
                height: 342px;
           }
      }
