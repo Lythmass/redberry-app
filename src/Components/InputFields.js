@@ -8,6 +8,7 @@ const InputFieldsStyled = styled.div`
      @media(min-width: 1200px) {
           flex: 1 1 33%;
      }
+
      > label {
           font-size: 18px;
           font-weight: bold;
@@ -27,6 +28,7 @@ const InputFieldsStyled = styled.div`
           &:focus {
                color: hsl(0, 100%, 0%, 1);
                border: 1.9px solid ${(props) => props.error ? `#E52F2F` : `#8AC0E2`};
+               background-color: hsl(230, 88%, 56%, 0.1);
           }
           ${props => props.keyName == "price" && `background: url(./images/lari.png)`};
           ${props => props.keyName == "price" && `background-size: 13px`};
@@ -125,11 +127,9 @@ export default function Inputfields(props) {
                }
           }
           if(props.keyName == 'laptopName') {
-               for(let i = 0; i <= change.length; i++) {
-                    if(change[i] < ' ' || change[i] > '~') {
-                         setCheckLanguage(false);
-                         break;
-                    }
+               if(!change.match('^[A-Za-z]?[A-Za-z0-9]?[A-Za-z0-9!-@-#-$-%-^-&-*-(-)-_+-=]*$')) {
+                    setCheckLanguage(false);
+               } else {
                     setCheckLanguage(true);
                }
           }

@@ -98,7 +98,7 @@ export default function BottomInfo(props) {
                {props.info.laptop.purchase_date &&
                     <SectionStyled>
                          <div>
-                              <h4>შევსების რიცხვი:</h4>
+                              <h4>შეძენის რიცხვი:</h4>
                               <p>{props.info.laptop.purchase_date}</p>
                          </div>
                     </SectionStyled>
