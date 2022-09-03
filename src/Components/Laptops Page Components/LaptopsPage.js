@@ -17,6 +17,10 @@ const LaptopsPageStyled = styled.section`
      justify-content: center;
      flex-direction: column;
      align-items: center;
+
+     @media(min-width: 1200px) {
+          background-color: #F6F6F6;
+     }
 `
 
 const FormStyled = styled.form`
@@ -30,8 +34,13 @@ const FormStyled = styled.form`
      > hr {
           display: none;
      }
+
      @media(min-width: 1200px) {
-          width: 878px;
+          background-color: #fff;
+          padding: 3rem 7rem 0;
+          border-radius: 18px;
+          margin-top: 3rem;
+          min-width: 878px;
           gap: 2.75rem;
           > hr {
                margin: 1rem 0;

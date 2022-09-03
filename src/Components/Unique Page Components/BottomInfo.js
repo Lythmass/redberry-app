@@ -8,6 +8,8 @@ const BottomInfoStyled = styled.div`
      align-items: center;
      justify-content: center;
 
+     padding-bottom: 2rem;
+
      gap: 0.5rem;
      > div {
           width: 100%;
@@ -31,6 +33,7 @@ const BottomInfoStyled = styled.div`
           flex-direction: row;
           width: 1177px;
           justify-content: flex-start;
+          padding-bottom: 0;
      }
 
 `

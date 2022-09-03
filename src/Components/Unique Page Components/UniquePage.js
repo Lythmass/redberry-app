@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { browserHistory } from 'react-router'
+
 import GeneralHeader from '../GeneralHeader.js'
 import TopInfo from './TopInfo.js'
 import MiddleInfo from './MiddleInfo.js'
@@ -35,8 +37,7 @@ export default function UniquePage(props) {
           .then(response => response.json())
           .then(data => setInfo(data.data));
      }, []);
-
-
+     
      return (
           <UniquePageStyled>
                <GeneralHeader

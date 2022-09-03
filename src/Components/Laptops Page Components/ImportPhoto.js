@@ -15,6 +15,8 @@ const ImportPhotoStyled = styled.div`
      align-items: center;
      flex-direction: column;
 
+     background-color: ${props => props.hasSubmitted && props.change == './images/camera.png' ? 'hsl(0, 78%, 54%, 0.1)' : '#F6F6F6'};
+
      position: relative;
      > label {
           cursor: pointer;

@@ -14,6 +14,11 @@ const WorkerInfoPageStyled = styled.section`
      width: 100%;
      align-items: center;
      justify-content: center;
+
+     @media(min-width: 1200px) {
+          background-color: #F6F6F6;
+     }
+
      > img {
           padding: 3rem 0;
           width: 80px;
@@ -25,7 +30,11 @@ const FormStyled = styled.form`
      flex-direction: column;
      gap: 1rem;
      margin: 50px 0 0;
-
+     @media(min-width: 1200px) {
+          background-color: #fff;
+          padding: 3rem 7rem 0;
+          border-radius: 18px;
+     }
 `
 
 const FirstLastNameStyled = styled.div`

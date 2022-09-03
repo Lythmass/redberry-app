@@ -137,7 +137,7 @@ export default function Inputfields(props) {
 
      //Validate @redberry.ge
      function validateMail() {
-          if(props.type == 'mail') {
+          if(props.type == 'email') {
                //Check if the mail ends with @redberry.ge
                if(change.substr(change.length - 12) != "@redberry.ge") {
                     setCheckMail(false);

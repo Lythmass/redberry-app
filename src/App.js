@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
   Routes,
-  Route,
+  Route
 } from "react-router-dom";
 
 import LandingPage from './Components/Landing Page Components/LandingPage.js'
@@ -28,7 +28,7 @@ export default function App() {
                          return (
                               <Route
                                    path = {`page-${eachPage}`}
-                                   element = {<UniquePage id = {eachPage}/>}
+                                   element = {<UniquePage id = {eachPage} />}
                                    key = {eachPage}
                               />
                          )
@@ -36,7 +36,6 @@ export default function App() {
                })
           }
      }, [pageCounter]);
-
      return (
           <BrowserRouter>
                <Routes>
