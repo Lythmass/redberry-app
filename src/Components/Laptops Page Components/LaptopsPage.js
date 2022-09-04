@@ -196,7 +196,7 @@ export default function LaptopsPage(props) {
                     <hr />
                     <InputsWrapper>
                          <InputFields
-                              type = "text"
+                              type = "date"
                               label = "შეძენის რიცხვი (არჩევითი)"
                               keyName = "date"
                               hasSubmitted = {hasSubmitted}

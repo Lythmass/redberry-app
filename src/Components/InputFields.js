@@ -127,7 +127,7 @@ export default function Inputfields(props) {
                }
           }
           if(props.keyName == 'laptopName') {
-               if(!change.match('^[A-Za-z]?[A-Za-z0-9]?[A-Za-z0-9!-@-#-$-%-^-&-*-(-)-_+-=]*$')) {
+               if(!change.match('^[A-Za-z]?[A-Za-z0-9]?[A-Za-z0-9!-@-#-$-%-^-&-*-(-)-_+-=- ]*$')) {
                     setCheckLanguage(false);
                } else {
                     setCheckLanguage(true);
@@ -178,8 +178,6 @@ export default function Inputfields(props) {
                     onChange = {(event) => handleChange(event)}
                     type = {props.type}
                     value = {localStorage.getItem(props.keyName)}
-                    pattern = {props.keyName == 'date' && props.pattern}
-                    placeholder = {props.keyName == 'date' && 'დდ/თთ/წწწწ'}
                />
                <p>{props.description}</p>
           </InputFieldsStyled>

@@ -17,17 +17,18 @@ import UniquePage from './Components/Unique Page Components/UniquePage.js'
 
 export default function App() {
      const [image, setImage] = React.useState('');
-     const [pageCounter, setPageCounter] = React.useState([]);
+     const [pageCounter, setPageCounter] = React.useState(JSON.parse(localStorage.getItem('counter')) || []);
      const [listPages, setListPages] = React.useState([]);
 
      //Add each page for specific laptop
      React.useEffect(() => {
+          localStorage.setItem('counter', JSON.stringify(pageCounter));
           if(pageCounter.length > 0) {
                setListPages(() => {
                     return pageCounter.map(eachPage => {
                          return (
                               <Route
-                                   path = {`page-${eachPage}`}
+                                   path = {`/page-${eachPage}`}
                                    element = {<UniquePage id = {eachPage} />}
                                    key = {eachPage}
                               />
