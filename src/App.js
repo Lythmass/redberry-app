@@ -38,16 +38,13 @@ export default function App() {
           }
      }, [pageCounter]);
      return (
-          <BrowserRouter>
-               <Routes>
-                    <Route path = "/" element = {<LandingPage />} />
-                    <Route path = "/workerinfo" element = {<WorkerInfoPage />} />
-                    <Route path = "/laptopspage" element = {<LaptopsPage setImage = {setImage} />} />
-                    <Route path = "/successpage" element = {<SuccessPage image = {image}/>} />
-                    <Route path = "/list" element = {<ListPage setPageCounter = {setPageCounter}/>} />
-                    {listPages}
-               </Routes>
-
-          </BrowserRouter>
+          <Routes>
+               <Route path = "/" element = {<LandingPage />} />
+               <Route path = "/workerinfo" element = {<WorkerInfoPage />} />
+               <Route path = "/laptopspage" element = {<LaptopsPage setImage = {setImage} />} />
+               <Route path = "/successpage" element = {<SuccessPage image = {image}/>} />
+               <Route path = "/list" element = {<ListPage setPageCounter = {setPageCounter}/>} />
+               {listPages}
+          </Routes>
      );
 }
