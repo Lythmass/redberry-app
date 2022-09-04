@@ -100,7 +100,7 @@ export default function SuccessPage(props) {
                          'position_id': localStorage.getItem('positionId'),
                          'phone_number': localStorage.getItem('phone'),
                          'email': localStorage.getItem('mail'),
-                         'token': '0a132ad7a0bb16632546912fba9583c6',
+                         'token': '4f2387b7c79596bfef6529cc7a417bcd',
                          'laptop_name': localStorage.getItem('laptopName'),
                          'laptop_image': props.image,
                          'laptop_brand_id': localStorage.getItem('brandId'),
