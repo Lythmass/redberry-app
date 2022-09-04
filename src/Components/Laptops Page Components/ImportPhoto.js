@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import ImportAgain from './ImportAgain.js'
+
 const ImportPhotoStyled = styled.div`
      width: 358px;
      height: 244px;
-
-     margin: 0 0 2rem 0;
 
      border: 2px dashed ${props => props.hasSubmitted && props.change == "./images/camera.png"? '#E52F2F' : '#4386A9'};
      border-radius: 8px;
@@ -101,6 +101,7 @@ const UploadButton = styled.div`
      }
 `
 
+
 export default function ImportPhoto(props) {
      const [change, setChange] = React.useState("./images/camera.png");
      const [resize, setResize] = React.useState(window.innerWidth >= 1200 ? true : false);
@@ -141,33 +142,37 @@ export default function ImportPhoto(props) {
      }
 
      return (
-          <ImportPhotoStyled hasSubmitted = {props.hasSubmitted} change = {change}>
-          {
-               props.hasSubmitted && change == "./images/camera.png" ?
-               <WarningStyled src = "./images/warning.png" /> : ""
-          }
-               <label htmlFor = "photo">
-                    {
-                         resize && change == "./images/camera.png" ?
-                         <UploadButton>ატვირთე</UploadButton> :
-                         <img src = {change} />
-                    }
-
-
-                    {
-                         resize ? <p>ჩააგდე ან ატვირთე <br /> ლეპტოპის ფოტო</p>
-                         : <p>ლეპტოპის ფოტოს <br />ატვირთვა</p>
-                    }
-               </label>
-               <input
-                    onChange = {(event) => handleChange(event)}
-                    id = "photo" type = "file"
-                    accept="image/*"
-               />
+          <>
+               <ImportPhotoStyled hasSubmitted = {props.hasSubmitted} change = {change}>
                {
                     props.hasSubmitted && change == "./images/camera.png" ?
                     <WarningStyled src = "./images/warning.png" /> : ""
                }
-          </ImportPhotoStyled>
+                    <label htmlFor = {change == './images/camera.png' ? "photo" : ''}>
+                         {
+                              resize && change == "./images/camera.png" ?
+                              <UploadButton>ატვირთე</UploadButton> :
+                              <img src = {change} />
+                         }
+
+
+                         {
+                              resize ? <p>ჩააგდე ან ატვირთე <br /> ლეპტოპის ფოტო</p>
+                              : <p>ლეპტოპის ფოტოს <br />ატვირთვა</p>
+                         }
+                    </label>
+                    <input
+                         onChange = {(event) => handleChange(event)}
+                         id = "photo" type = "file"
+                         accept="image/*"
+                    />
+                    {
+                         props.hasSubmitted && change == "./images/camera.png" ?
+                         <WarningStyled src = "./images/warning.png" /> : ""
+                    }
+               </ImportPhotoStyled>
+               {setChange != './images/camera.png' && <ImportAgain setImage = {props.setImage} setChange = {setChange}/>}
+          </>
+
      )
 }
