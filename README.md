@@ -1,6 +1,8 @@
 
 # Redberry Internship App
 
+Link to the project - https://lythmass.github.io/redberry-app/
+
 The purpose of this app is to enter user information followed by laptop information.
 After that, the user submits the form and then it gets added to the list, which can be navigated
 easily in app.
