@@ -8,7 +8,7 @@ const ImportPhotoStyled = styled.div`
      height: 244px;
 
      border: 2px dashed ${props => props.hasSubmitted && props.change == "./images/camera.png"? '#E52F2F' : '#4386A9'};
-     border-radius: 8px;
+     border-radius: 18px;
 
      display: flex;
      justify-content: center;
@@ -35,6 +35,7 @@ const ImportPhotoStyled = styled.div`
                height: ${props => props.change != "./images/camera.png" && `244px`};
                position: ${props => props.change != "./images/camera.png" && 'absolute'};
                object-fit: cover;
+               border-radius: 18px;
           }
      }
 
@@ -137,6 +138,8 @@ export default function ImportPhoto(props) {
           reader.onload = function(event) {
                setChange(event.target.result);
                localStorage.setItem("photo", JSON.stringify(event.target.result));
+               localStorage.setItem('size', file.size);
+               localStorage.setItem('fileName', file.name);
           }
           reader.readAsDataURL(file);
      }
@@ -171,7 +174,7 @@ export default function ImportPhoto(props) {
                          <WarningStyled src = "./images/warning.png" /> : ""
                     }
                </ImportPhotoStyled>
-               {setChange != './images/camera.png' && <ImportAgain setImage = {props.setImage} setChange = {setChange}/>}
+               {change != './images/camera.png' && <ImportAgain setImage = {props.setImage} setChange = {setChange}/>}
           </>
 
      )

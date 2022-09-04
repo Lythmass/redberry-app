@@ -11,6 +11,11 @@ const ImportAgainStyled = styled.div`
      > input {
           display: none;
      }
+
+     @media(min-width: 1200px) {
+          width: 878px;
+          transform: translateY(-2rem);
+     }
 `
 
 
@@ -41,6 +46,10 @@ const UploadButton = styled.div`
      &:hover:before {
           left: 0;
      }
+
+     @media(min-width: 1200px) {
+          padding: 1.75rem 0;
+     }
 `
 
 const ImgStyled = styled.img`
@@ -58,6 +67,19 @@ const DataStyled = styled.div`
           }
           > h4 {
                font-size: 12px;
+          }
+     }
+     @media (min-width: 1200px) {
+          > div {
+               display: flex;
+               align-items: center;
+               gap: 1rem;
+               > p {
+                    font-size: 18px;
+               }
+               > h4 {
+                    font-size: 18px;
+               }
           }
      }
 `
