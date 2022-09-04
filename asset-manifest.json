@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/redberry-app/static/css/main.510b7059.css",
+    "main.js": "/redberry-app/static/js/main.c75018f9.js",
+    "static/media/HelveticaNeue.ttc": "/redberry-app/static/media/HelveticaNeue.67d426c3bd180e2ea838.ttc",
+    "index.html": "/redberry-app/index.html",
+    "main.510b7059.css.map": "/redberry-app/static/css/main.510b7059.css.map",
+    "main.c75018f9.js.map": "/redberry-app/static/js/main.c75018f9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.510b7059.css",
+    "static/js/main.c75018f9.js"
+  ]
+}
